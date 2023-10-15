@@ -27,6 +27,20 @@ int main() {
             keep_going = false;
             continue; 
         }
+        printf("Possible combinations of scoring plays include:\n\n");
+        for(int two_point_conversion = 0; two_point_conversion * scores[4] <= score; two_point_conversion++) { // Goes through every possible two point conversion combination
+            for(int extra_point = 0; extra_point * scores[3] <= score; extra_point++) { // Goes through every possible extra point combination
+                for(int touchdown = 0; touchdown * scores[2] <= score; touchdown++) { // Goes through every possible touchdown combination
+                    for(int field_goal = 0; field_goal * scores[1] <= score; field_goal++) { // Goes through every possible field goal combination
+                        for(int safety = 0; safety * scores[0] <= score; safety++) { // Goes through every possible safety combination
+                            if (touchdown * scores[2] + field_goal * scores[1] + safety * scores[0] + two_point_conversion * scores[4] + extra_point * scores[3] == score) { // If the combination of scores equals the score the user entered
+                                printf("%d TD + 2PT, %d TD + FG, %d TD, %d 3PT FG, %d Safety\n", two_point_conversion, extra_point, touchdown, field_goal, safety); // Print it to the console
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     return 0;
 }
